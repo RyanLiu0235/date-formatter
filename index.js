@@ -11,19 +11,25 @@
 /**
  * 时间格式化
  *
- * @param 	{timeString} 						then 	一个遥远的时间
- * @param 	{timeString|undefined} 	now 	当前的时间，不传默认为当前
- * @return 	{String} 					按照上面的规则来返回
+ * @param   {Date}            then  一个遥远的时间
+ * @param   {Date|undefined}  now   当前的时间，不传默认为当前
+ * @return  {String}          按照上面的规则来返回
  */
 
 var MINUTE = 60 * 1000
 var HOUR = 60 * MINUTE
 var DAY = 24 * HOUR
 
-var formatter = function(_then, _now) {
-  _now = _now === undefined ? Date.now() : _now
-  var now = new Date(_now)
-  var then = new Date(_then)
+var formatter = function(then, now) {
+  if (!(then instanceof Date)) {
+    throw new TypeError('formatter: argument \'then\' needs to be an instance of Date')
+  }
+  if (now !== undefined && !(now instanceof Date)) {
+    throw new TypeError('formatter: argument \'now\' needs to be an instance of Date or undefined')
+  }
+  now = now === undefined ? new Date() : now
+  var _now = now.getTime()
+  var _then = then.getTime()
   var distance = _now - _then
 
   if (distance < MINUTE) {

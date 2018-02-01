@@ -20,49 +20,72 @@ var HOUR = 60 * MINUTE
 var DAY = 24 * HOUR
 
 describe('时间格式化', function() {
+  describe('传入的参数必须是Date的实例', function() {
+    it('如果参数`then`不是Date实例，应该抛出一个错误', function() {
+      try {
+        formatter(Date.now())
+      } catch (err) {
+        assert.ok(
+          err instanceof TypeError &&
+          err.message === 'formatter: argument \'then\' needs to be an instance of Date'
+        )
+      }
+    })
+
+    it('如果参数`now`不为`undefined`且不为Date实例，应该抛出一个错误', function() {
+      try {
+        formatter(new Date(2018, 0, 1), Date.now())
+      } catch (err) {
+        assert.ok(
+          err instanceof TypeError &&
+          err.message === 'formatter: argument \'now\' needs to be an instance of Date or undefined'
+        )
+      }
+    })
+  })
   describe('距离' + now.toLocaleString(), function() {
     it('1分钟以内，要返回\'刚刚\'', function() {
-      assert.deepStrictEqual(formatter(_now - MINUTE + SECOND, _now), '刚刚')
+      assert.deepStrictEqual(formatter(new Date(_now - MINUTE + SECOND), now), '刚刚')
     })
 
     it('1分钟，要返回\'1分钟前\'', function() {
-      assert.deepStrictEqual(formatter(_now - MINUTE, _now), '1分钟前')
+      assert.deepStrictEqual(formatter(new Date(_now - MINUTE), now), '1分钟前')
     })
 
     it('59分钟59秒，要返回\'59分钟前\'', function() {
-      assert.deepStrictEqual(formatter(_now - HOUR + SECOND, _now), '59分钟前')
+      assert.deepStrictEqual(formatter(new Date(_now - HOUR + SECOND), now), '59分钟前')
     })
 
     it('1个小时，要返回\'1小时前\'', function() {
-      assert.deepStrictEqual(formatter(_now - HOUR, _now), '1小时前')
+      assert.deepStrictEqual(formatter(new Date(_now - HOUR), now), '1小时前')
     })
 
     it('23个小时59分钟59秒，要返回\'23小时前\'', function() {
-      assert.deepStrictEqual(formatter(_now - DAY + SECOND, _now), '23小时前')
+      assert.deepStrictEqual(formatter(new Date(_now - DAY + SECOND), now), '23小时前')
     })
 
     it('24个小时，要返回\'昨天\'', function() {
-      assert.deepStrictEqual(formatter(_now - DAY, _now), '昨天')
+      assert.deepStrictEqual(formatter(new Date(_now - DAY), now), '昨天')
     })
 
     it('昨天零点，要返回\'昨天\'', function() {
       var then = new Date(2018, 0, 31)
-      assert.deepStrictEqual(formatter(then, _now), '昨天')
+      assert.deepStrictEqual(formatter(then, now), '昨天')
     })
 
     it('昨天零点前一秒，要返回\'1-30\'', function() {
       var then = new Date(2018, 0, 30, 23, 59, 59)
-      assert.deepStrictEqual(formatter(then, _now), '1-30')
+      assert.deepStrictEqual(formatter(then, now), '1-30')
     })
 
     it('2018-01-01 00:00:00，要返回\'1-1\'', function() {
       var then = new Date(2018, 0, 1)
-      assert.deepStrictEqual(formatter(then, _now), '1-1')
+      assert.deepStrictEqual(formatter(then, now), '1-1')
     })
 
     it('2017-12-31 23:59:59，要返回\'2017-12-31\'', function() {
       var then = new Date(2017, 11, 31)
-      assert.deepStrictEqual(formatter(then, _now), '2017-12-31')
+      assert.deepStrictEqual(formatter(then, now), '2017-12-31')
     })
   })
 })
