@@ -1,5 +1,5 @@
 {
-  "name": "date-formatter",
+  "name": "format-publish-date",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
