@@ -11,7 +11,7 @@
 var assert = require('assert')
 var formatter = require('./')
 
-var now = new Date(2018, 1, 1, 11, 30, 2) // 2018-1-1 11:30:02
+var now = new Date(2018, 1, 1, 11, 30, 2) // 2018-2-1 11:30:02
 var _now = now.getTime()
 
 var SECOND = 1000
@@ -20,7 +20,7 @@ var HOUR = 60 * MINUTE
 var DAY = 24 * HOUR
 
 describe('时间格式化', function() {
-  describe('距离2018-02-01 11:30:02', function() {
+  describe('距离' + now.toLocaleString(), function() {
     it('1分钟以内，要返回\'刚刚\'', function() {
       assert.deepStrictEqual(formatter(_now - MINUTE + SECOND, _now), '刚刚')
     })
