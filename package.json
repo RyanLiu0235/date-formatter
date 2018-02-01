@@ -1,12 +1,17 @@
 {
   "name": "format-publish-date",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec && ./node_modules/.bin/codecov"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stop2stare/date-formatter.git"
+  },
+  "homepage": "https://github.com/stop2stare/date-formatter#readme",
   "keywords": [],
   "author": "liucheng",
   "license": "MIT",
