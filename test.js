@@ -84,7 +84,7 @@ describe('时间格式化', function() {
     })
 
     it('2017-12-31 23:59:59，要返回\'2017-12-31\'', function() {
-      var then = new Date(2017, 11, 31)
+      var then = new Date(2017, 11, 31, 23, 59, 59)
       assert.deepStrictEqual(formatter(then, now), '2017-12-31')
     })
   })
