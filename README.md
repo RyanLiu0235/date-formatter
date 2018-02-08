@@ -1,6 +1,6 @@
-# date-formatter
-[![Build Status](https://travis-ci.org/stop2stare/date-formatter.svg?branch=master)](https://travis-ci.org/stop2stare/date-formatter)
-[![codecov](https://codecov.io/gh/stop2stare/date-formatter/branch/master/graph/badge.svg)](https://codecov.io/gh/stop2stare/date-formatter)
+# date-formatter [![Build Status](https://travis-ci.org/stop2stare/date-formatter.svg?branch=master)](https://travis-ci.org/stop2stare/date-formatter) [![codecov](https://codecov.io/gh/stop2stare/date-formatter/branch/master/graph/badge.svg)](https://codecov.io/gh/stop2stare/date-formatter)
+
+根据特定规则对时间进行转换
 
 ## rules
 * 1分钟以内 —— 刚刚
